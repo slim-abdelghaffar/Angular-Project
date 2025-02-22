@@ -1,0 +1,42 @@
+/* Style général de la navbar */
+nav {
+    background: #007bff; /* Bleu */
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Style des liens */
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+/* Effet au survol */
+nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* Lien actif (optionnel si tu veux un effet sur la page actuelle) */
+nav a.active {
+    background: white;
+    color: #007bff;
+}
+
+/* Responsive pour petits écrans */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

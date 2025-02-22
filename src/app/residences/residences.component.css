@@ -1,110 +1,74 @@
-/* Conteneur principal */
 .residences-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
   padding: 20px;
 }
 
-/* Carte de résidence */
+/* Positionne le bouton en haut avec un bon espacement */
+.add-residence-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+/* Style pour aligner les résidences */
+.residence-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
 .residence-card {
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out;
-}
-
-.residence-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Image */
-.residence-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-bottom: 3px solid #007bff;
-}
-
-/* Informations de la résidence */
-.residence-info {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 15px;
+  width: calc(33.333% - 20px); /* 3 cartes par ligne */
   text-align: center;
 }
 
-.residence-info h3 {
-  margin-bottom: 5px;
-  font-size: 1.3em;
-}
-
-.residence-info p {
-  margin: 5px 0;
-  color: #555;
-}
-
-/* Gestion des statuts */
-.status {
-  font-weight: bold;
-  padding: 5px 10px;
+.residence-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
   border-radius: 5px;
-  display: inline-block;
 }
 
-.status-disponible {
-  background-color: #28a745;
-  color: white;
-}
-
-.status-en-construction {
-  background-color: #ffc107;
-  color: black;
-}
-
-.status-vendu {
-  background-color: #dc3545;
-  color: white;
-}
-
-/* Boutons */
 .residence-actions {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  gap: 10px;
   margin-top: 10px;
 }
 
 .btn {
   padding: 8px 12px;
   border: none;
-  border-radius: 5px;
-  font-size: 14px;
   cursor: pointer;
-  transition: background 0.3s ease-in-out;
+  font-size: 14px;
 }
 
 .btn-primary {
-  background: #007bff;
+  background-color: #007bff;
   color: white;
-}
-
-.btn-primary:hover {
-  background: #0056b3;
 }
 
 .btn-secondary {
-  background: #6c757d;
+  background-color: #6c757d;
   color: white;
-}
-
-.btn-secondary:hover {
-  background: #5a6268;
 }
 
 .btn-like {
-  background: #dc3545;
+  background-color: #dc3545;
   color: white;
 }
 
-.btn-like:hover {
-  background: #bd2130;
+.btn-details {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.status {
+  font-weight: bold;
 }

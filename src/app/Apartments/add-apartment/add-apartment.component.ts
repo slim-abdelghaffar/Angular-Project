@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Apartment } from 'src/app/core/models/apartement';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-apartment',
@@ -8,15 +7,33 @@ import { Apartment } from 'src/app/core/models/apartement';
   styleUrls: ['./add-apartment.component.css']
 })
 export class AddApartmentComponent {
-  newApartment: Apartment = new Apartment();  // Initialisation de l'objet nouvel appartement
+  apartForm: FormGroup;
 
-  constructor(private router: Router) {}
+  constructor(private fb: FormBuilder) {
+    this.apartForm = this.fb.group({
+      apartNum: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      floorNum: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      surface: ['', Validators.required],
+      terrace: [false],
+      surfaceterrace: [{ value: '', disabled: true }],
+      category: ['', Validators.required],
+      ResidenceId: ['', Validators.required]
+    });
 
-  // Fonction pour soumettre le formulaire et ajouter l'appartement
-  onSubmit(): void {
-    // Vous pouvez ajouter ici la logique pour envoyer l'appartement à un service ou une API
-    console.log(this.newApartment);
-    // Après soumission, rediriger vers la liste des appartements
-    this.router.navigate(['/apartments-list']);
+    // Activer/désactiver surfaceterrace selon terrace
+    this.apartForm.get('terrace')?.valueChanges.subscribe(value => {
+      if (value) {
+        this.apartForm.get('surfaceterrace')?.enable();
+      } else {
+        this.apartForm.get('surfaceterrace')?.disable();
+        this.apartForm.get('surfaceterrace')?.setValue('');
+      }
+    });
+  }
+
+  addApartment() {
+    if (this.apartForm.valid) {
+      console.log('Nouvel Appartement :', this.apartForm.value);
+    }
   }
 }

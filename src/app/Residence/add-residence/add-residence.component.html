@@ -1,37 +1,64 @@
-<div class="container">
-    <h2>{{ isUpdateMode ? 'Mise à jour de la résidence' : 'Ajouter une nouvelle résidence' }}</h2>
-  
-    <!-- Formulaire d'ajout ou de mise à jour -->
-    <form (ngSubmit)="saveResidence()">
-      <div class="form-group">
-        <label for="name">Nom de la résidence</label>
-        <input type="text" id="name" class="form-control" [(ngModel)]="residence.name" name="name" required>
+<form [formGroup]="residenceForm" (ngSubmit)="submitForm()" class="form-container">
+
+  <!-- Champ caché ID -->
+  <input type="hidden" formControlName="id">
+
+  <!-- Nom de la résidence -->
+  <label>Nom :</label>
+  <input type="text" formControlName="name">
+
+  <!-- Adresse -->
+  <label>Adresse :</label>
+  <input type="text" formControlName="address">
+
+  <!-- Image (URL) -->
+  <label>Image URL :</label>
+  <input type="text" formControlName="image">
+
+  <!-- Statut -->
+  <label>Statut :</label>
+  <select formControlName="status">
+    <option value="Disponible">Disponible</option>
+    <option value="En Construction">En Construction</option>
+    <option value="Vendu">Vendu</option>
+  </select>
+
+  <h3>Appartements</h3>
+
+  <div formArrayName="apartments">
+    <div *ngFor="let apt of apartments.controls; let i = index" [formGroupName]="i" class="apartment-card">
+
+      <label>Numéro d'appartement :</label>
+      <input type="text" formControlName="apartmentNumber">
+
+      <label>Étage :</label>
+      <input type="text" formControlName="floorNumber">
+
+      <label>Surface :</label>
+      <input type="text" formControlName="surface">
+
+      <label>Terrasse :</label>
+      <div>
+        <input type="radio" formControlName="terrace" value="no" (change)="onTerraceChange(i, 'yes')"> Non
+        <input type="radio" formControlName="terrace" value="no" (change)="onTerraceChange(i, 'no')"> Non
       </div>
-  
-      <div class="form-group">
-        <label for="address">Adresse</label>
-        <input type="text" id="address" class="form-control" [(ngModel)]="residence.address" name="address" required>
+
+      <label>Surface Terrasse :</label>
+      <input type="text" formControlName="surfaceTerrace">
+
+      <label>Catégorie :</label>
+      <div>
+        <input type="radio" formControlName="category" value="S+1"> S+1
+        <input type="radio" formControlName="category" value="S+2"> S+2
+        <input type="radio" formControlName="category" value="S+3"> S+3
       </div>
-  
-      <div class="form-group">
-        <label for="image">URL de l'image</label>
-        <input type="text" id="image" class="form-control" [(ngModel)]="residence.image" name="image" required>
-      </div>
-  
-      <div class="form-group">
-        <label for="status">Statut</label>
-        <select id="status" class="form-control" [(ngModel)]="residence.status" name="status" required>
-          <option value="Disponible">Disponible</option>
-          <option value="Vendu">Vendu</option>
-          <option value="En Construction">En Construction</option>
-        </select>
-      </div>
-  
-      <!-- Boutons pour soumettre ou annuler -->
-      <button type="submit" class="btn btn-primary">
-        {{ isUpdateMode ? 'Mettre à jour' : 'Ajouter' }}
-      </button>
-      <button type="button" class="btn btn-secondary" (click)="cancel()">Annuler</button>
-    </form>
+
+      <button type="button" (click)="removeApartment(i)" class="btn btn-danger">🗑️ Supprimer</button>
+    </div>
   </div>
-  
+
+  <button type="button" (click)="addApartment()" class="btn btn-secondary">➕ Ajouter un Appartement</button>
+
+  <br><br>
+  <button type="submit" [disabled]="residenceForm.invalid" class="btn btn-primary">✅ Ajouter la Résidence</button>
+</form>

@@ -1,28 +1,38 @@
 <div class="residences-container">
-  <div *ngFor="let residence of filteredResidences" class="residence-card">
-    <img [src]="residence.image" alt="{{ residence.name }}" class="residence-img">
-    <div class="residence-info">
-      <h3>{{ residence.name }}</h3>
-      <p><strong>Adresse:</strong> {{ residence.address }}</p>
-      <p class="status" [ngClass]="getStatusClass(residence.status)">
-        <strong>Statut:</strong> {{ residence.status }}
-      </p>
+  <!-- Bouton pour ajouter une nouvelle résidence -->
+  <div class="add-residence-container">
+    <button [routerLink]="['/add-residence']" class="btn btn-primary">
+      ➕ Ajouter une Résidence
+    </button>
+  </div>
 
-      <div class="residence-actions">
-        <!-- Lien pour voir les appartements associés à cette résidence -->
-        <button [routerLink]="['/apartments-by-residence', residence.id]" class="btn btn-primary">
-          Voir Appartements
-        </button>
+  <!-- Liste des résidences -->
+  <div class="residence-list">
+    <div *ngFor="let residence of filteredResidences" class="residence-card">
+      <img [src]="residence.image" alt="{{ residence.name }}" class="residence-img">
 
-        <button (click)="showLocation(residence)" class="btn btn-secondary">
-          📍 Localisation
-        </button>
-        <button (click)="addToFavorites(residence)" class="btn btn-like">
-          ❤️ Ajouter aux Favoris
-        </button>
-        <button [routerLink]="['/residence-details', residence.id]" class="btn btn-details">
-          ℹ️ Détails
-        </button>
+      <div class="residence-info">
+        <h3>{{ residence.name }}</h3>
+        <p><strong>Adresse :</strong> {{ residence.address }}</p>
+        <p class="status" [ngClass]="getStatusClass(residence.status)">
+          <strong>Statut :</strong> {{ residence.status }}
+        </p>
+
+        <!-- Actions disponibles pour chaque résidence -->
+        <div class="residence-actions">
+          <button [routerLink]="['/apartments-by-residence', residence.id]" class="btn btn-primary">
+            🏢 Voir Appartements
+          </button>
+          <button (click)="showLocation(residence)" class="btn btn-secondary">
+            📍 Localisation
+          </button>
+          <button (click)="addToFavorites(residence)" class="btn btn-like">
+            ❤️ Ajouter aux Favoris
+          </button>
+          <button [routerLink]="['/residence-details', residence.id]" class="btn btn-details">
+            ℹ️ Détails
+          </button>
+        </div>
       </div>
     </div>
   </div>

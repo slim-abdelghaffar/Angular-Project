@@ -5,7 +5,7 @@ import { AddResidenceComponent } from './Residence/add-residence/add-residence.c
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ResidencesComponent } from './residences/residences.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
@@ -36,6 +36,7 @@ import { ResidenceDetailsComponent } from './Residence/residence-details/residen
     AppRoutingModule,
     FormsModule,
     RouterModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
