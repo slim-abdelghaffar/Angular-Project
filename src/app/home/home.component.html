@@ -1,5 +1,5 @@
 <div class="residences-container">
-  <div *ngFor="let residence of filteredResidences" class="residence-card">
+  <div *ngFor="let residence of listResidences" class="residence-card">
     <img [src]="residence.image" alt="{{ residence.name }}" class="residence-img">
     <div class="residence-info">
       <h3>{{ residence.name }}</h3>
@@ -7,22 +7,13 @@
       <p class="status" [ngClass]="getStatusClass(residence.status)">
         <strong>Statut:</strong> {{ residence.status }}
       </p>
-
+      
       <div class="residence-actions">
-        <!-- Lien pour voir les appartements associés à cette résidence -->
         <button [routerLink]="['/apartments-by-residence', residence.id]" class="btn btn-primary">
           Voir Appartements
         </button>
-
-        <button (click)="showLocation(residence)" class="btn btn-secondary">
-          📍 Localisation
-        </button>
-        <button (click)="addToFavorites(residence)" class="btn btn-like">
-          ❤️ Ajouter aux Favoris
-        </button>
-        <button [routerLink]="['/residence-details', residence.id]" class="btn btn-details">
-          ℹ️ Détails
-        </button>
+    
+       
       </div>
     </div>
   </div>

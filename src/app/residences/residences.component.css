@@ -1,72 +1,110 @@
 /* Conteneur principal */
-.container {
-    width: 80%;
-    margin: auto;
-    text-align: center;
-  }
-  
-  /* Champ de recherche */
-  .search-input {
-    width: 50%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  /* Liste des résidences */
-  .residence-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  /* Carte de résidence */
-  .residence-card {
-    width: 250px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.3s ease;
-  }
-  
-  .residence-card:hover {
-    transform: scale(1.05);
-  }
-  
-  /* Image */
-  .residence-img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-  
-  /* Détails */
-  .residence-details h3 {
-    margin: 10px 0;
-  }
-  
-  .residence-details p {
-    margin: 5px 0;
-    font-size: 14px;
-  }
-  
-  /* Boutons */
-  .buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
-  .btn {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
+.residences-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Carte de résidence */
+.residence-card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.residence-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Image */
+.residence-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 3px solid #007bff;
+}
+
+/* Informations de la résidence */
+.residence-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.residence-info h3 {
+  margin-bottom: 5px;
+  font-size: 1.3em;
+}
+
+.residence-info p {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* Gestion des statuts */
+.status {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.status-disponible {
+  background-color: #28a745;
+  color: white;
+}
+
+.status-en-construction {
+  background-color: #ffc107;
+  color: black;
+}
+
+.status-vendu {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Boutons */
+.residence-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+}
+
+.btn-like {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-like:hover {
+  background: #bd2130;
+}

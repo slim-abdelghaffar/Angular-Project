@@ -1,0 +1,53 @@
+.details-container {
+  text-align: center;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin: 20px auto;
+}
+
+.details-img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.status {
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.status-disponible {
+  background-color: #28a745;
+  color: white;
+}
+
+.status-en-construction {
+  background-color: #ffc107;
+  color: black;
+}
+
+.status-vendu {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-back {
+  display: inline-block;
+  padding: 10px 15px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-back:hover {
+  background: #0056b3;
+}

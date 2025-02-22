@@ -1,0 +1,13 @@
+<div *ngIf="apartments.length > 0; else noApartments">
+  <h2>Liste des appartements pour la résidence {{ residenceId }}</h2>
+  <ul>
+    <li *ngFor="let apartment of apartments">
+      Appartement N°{{ apartment.apartNum }} - Surface: {{ apartment.surface }} m² - Catégorie: {{ apartment.category }}
+      <div *ngIf="apartment.terrace">Terrasse: {{ apartment.surfaceterrace }} m²</div>
+    </li>
+  </ul>
+</div>
+
+<ng-template #noApartments>
+  <p>Aucun appartement trouvé pour cette résidence.</p>
+</ng-template>

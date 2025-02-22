@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Residence } from 'src/app/core/models/residence';
-
+import { Apartment } from '../core/models/apartement';
+Apartment
 @Component({
   selector: 'app-residences',
   templateUrl: './residences.component.html',
@@ -14,7 +15,7 @@ export class ResidencesComponent {
     { id: 4, name: "El Anber", address: "inconnu", image: "../../assets/images/R4.jpg", status: "En Construction" }
   ];
 
-  searchTerm: string = '';
+  searchTerm: string = ''; // Déclarez searchTerm comme une chaîne de caractères
   favorites: Residence[] = [];
 
   get filteredResidences(): Residence[] {
@@ -30,6 +31,31 @@ export class ResidencesComponent {
       alert(`Adresse : ${residence.address}`);
     }
   }
+  getStatusClass(status: string): string {
+    switch (status) {
+      case 'Disponible':
+        return 'status-disponible';
+      case 'En Construction':
+        return 'status-en-construction';
+      case 'Vendu':
+        return 'status-vendu';
+      default:
+        return '';
+    }
+  }
+  apartments: { [residenceId: number]: Apartment[] } = {
+    1: [
+      { apartNum: 101, floorNum: 1, surface: 85, terrace: true, surfaceterrace: 15, category: 'T3', ResidenceId: 1 },
+      { apartNum: 102, floorNum: 1, surface: 75, terrace: false, surfaceterrace: 0, category: 'T2', ResidenceId: 1 }
+    ],
+    2: [
+      { apartNum: 201, floorNum: 2, surface: 90, terrace: true, surfaceterrace: 20, category: 'T3', ResidenceId: 2 }
+    ],
+    // Ajoutez d'autres appartements pour d'autres résidences
+  };
+  
+  // Filtrer les résidences par adresse
+ 
 
   addToFavorites(residence: Residence): void {
     this.favorites.push(residence);

@@ -1,0 +1,17 @@
+<div class="apartments-container">
+    <h2>Liste des Appartements</h2>
+  
+    <!-- Bouton pour créer un nouvel appartement -->
+    <button [routerLink]="['/add-apartment']" class="btn btn-success">
+      Ajouter un Nouvel Appartement
+    </button>
+  
+    <!-- Liste des appartements ou autre contenu -->
+    <div *ngFor="let apartment of apartments" class="apartment-card">
+      <p><strong>Numéro de l'appartement:</strong> {{ apartment.apartNum }}</p>
+      <p><strong>Surface:</strong> {{ apartment.surface }} m²</p>
+      <p><strong>Catégorie:</strong> {{ apartment.category }}</p>
+      <!-- Autres informations sur l'appartement -->
+    </div>
+  </div>
+  
