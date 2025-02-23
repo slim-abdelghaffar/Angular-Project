@@ -1,36 +1,70 @@
-import { Component } from '@angular/core';
-import { Residence } from 'src/app/core/models/residence';
-import { Apartment } from '../core/models/apartement';
-Apartment
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommonService } from '../core/Services/common.service';
+import { ResidenceService } from '../core/Services/residence.service';
+
 @Component({
   selector: 'app-residences',
   templateUrl: './residences.component.html',
   styleUrls: ['./residences.component.css']
 })
-export class ResidencesComponent {
-  listResidences: Residence[] = [
-    { id: 1, name: "El fel", address: "Borj Cedria", image: "../../assets/images/R1.jpg", status: "Disponible" },
-    { id: 2, name: "El yasmine", address: "Ezzahra", image: "../../assets/images/R2.jpg", status: "Disponible" },
-    { id: 3, name: "El Arij", address: "Rades", image: "../../assets/images/R3.jpg", status: "Vendu" },
-    { id: 4, name: "El Anber", address: "inconnu", image: "../../assets/images/R4.jpg", status: "En Construction" }
-  ];
+export class ResidencesComponent implements OnInit {
+  listResidences: any[] = [];
+  searchTerm: string = ''; // Search term for filtering
+  favorites: any[] = [];  // List for favorites
 
-  searchTerm: string = ''; // Déclarez searchTerm comme une chaîne de caractères
-  favorites: Residence[] = [];
+  constructor(
+    private commonService: CommonService, 
+    private residenceService: ResidenceService,
+    private router: Router
+  ) {}
 
-  get filteredResidences(): Residence[] {
+ 
+
+  // Get the number of residences with the same address
+  get addressCount() {
+    return this.commonService.getSameValueOf(this.listResidences, 'address', this.searchTerm);
+  }
+
+  // Filter residences by address
+  get filteredResidences() {
     return this.listResidences.filter(residence =>
       residence.address.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 
-  showLocation(residence: Residence): void {
+  // Show location of a residence
+  showLocation(residence: any): void {
     if (residence.address === "inconnu") {
       alert("L’adresse de cette résidence est inconnue !");
     } else {
       alert(`Adresse : ${residence.address}`);
     }
   }
+
+  // Navigate to residence details page
+  viewResidenceDetails(id: number): void {
+    this.router.navigate([`/residence-details/${id}`]);
+  }
+
+  // Delete a residence
+  deleteResidence(id: number): void {
+    this.residenceService.deleteResidence(id).subscribe(() => {
+      this.listResidences = this.listResidences.filter(residence => residence.id !== id);
+    });
+  }
+  ngOnInit(): void {
+    this.residenceService.getResidences().subscribe(data => {
+      this.listResidences = data;
+    });
+  }
+  // Add residence to favorites
+  addToFavorites(residence: any): void {
+    this.favorites.push(residence);
+    alert(`${residence.name} ajouté aux favoris !`);
+  }
+
+  // Get the CSS class for the residence status
   getStatusClass(status: string): string {
     switch (status) {
       case 'Disponible':
@@ -42,23 +76,5 @@ export class ResidencesComponent {
       default:
         return '';
     }
-  }
-  apartments: { [residenceId: number]: Apartment[] } = {
-    1: [
-      { apartNum: 101, floorNum: 1, surface: 85, terrace: true, surfaceterrace: 15, category: 'T3', ResidenceId: 1 },
-      { apartNum: 102, floorNum: 1, surface: 75, terrace: false, surfaceterrace: 0, category: 'T2', ResidenceId: 1 }
-    ],
-    2: [
-      { apartNum: 201, floorNum: 2, surface: 90, terrace: true, surfaceterrace: 20, category: 'T3', ResidenceId: 2 }
-    ],
-    // Ajoutez d'autres appartements pour d'autres résidences
-  };
-  
-  // Filtrer les résidences par adresse
- 
-
-  addToFavorites(residence: Residence): void {
-    this.favorites.push(residence);
-    alert(`${residence.name} ajouté aux favoris !`);
   }
 }

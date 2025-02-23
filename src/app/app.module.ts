@@ -10,11 +10,12 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ApartementComponent } from './Apartments/apartement/apartement.component';
 import { ApartmentsByResidenceComponent } from './Apartments/apartments-by-residence/apartments-by-residence.component';
 import { AddApartmentComponent } from './Apartments/add-apartment/add-apartment.component';
 import { RouterModule } from '@angular/router';
 import { ResidenceDetailsComponent } from './Residence/residence-details/residence-details.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ApartmentsComponent } from './Apartments/apartement/apartement.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +25,12 @@ import { ResidenceDetailsComponent } from './Residence/residence-details/residen
     HomeComponent,
     FooterComponent,
     NotFoundComponent,
-    ApartementComponent,
+
     ApartmentsByResidenceComponent,
     AddApartmentComponent,
     ResidenceDetailsComponent,
     AddResidenceComponent,
-    ApartementComponent,
+    ApartmentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +38,8 @@ import { ResidenceDetailsComponent } from './Residence/residence-details/residen
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

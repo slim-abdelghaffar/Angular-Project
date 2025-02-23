@@ -1,39 +1,19 @@
-<div class="residences-container">
-  <!-- Bouton pour ajouter une nouvelle résidence -->
-  <div class="add-residence-container">
-    <button [routerLink]="['/add-residence']" class="btn btn-primary">
-      ➕ Ajouter une Résidence
-    </button>
+<div>
+  <h1>Residences</h1>
+
+  <input type="text" [(ngModel)]="searchTerm" placeholder="Search by address" />
+
+  <div *ngFor="let residence of filteredResidences">
+    <h3>{{ residence.name }}</h3>
+    <p>{{ residence.address }}</p>
+    <img [src]="residence.image" alt="Residence image" width="150" height="100" />
+    <button (click)="viewResidenceDetails(residence.id)">View Details</button>
+    <button (click)="addToFavorites(residence)">Add to Favorites</button>
+    <button (click)="deleteResidence(residence.id)">Delete</button>
   </div>
 
-  <!-- Liste des résidences -->
-  <div class="residence-list">
-    <div *ngFor="let residence of filteredResidences" class="residence-card">
-      <img [src]="residence.image" alt="{{ residence.name }}" class="residence-img">
-
-      <div class="residence-info">
-        <h3>{{ residence.name }}</h3>
-        <p><strong>Adresse :</strong> {{ residence.address }}</p>
-        <p class="status" [ngClass]="getStatusClass(residence.status)">
-          <strong>Statut :</strong> {{ residence.status }}
-        </p>
-
-        <!-- Actions disponibles pour chaque résidence -->
-        <div class="residence-actions">
-          <button [routerLink]="['/apartments-by-residence', residence.id]" class="btn btn-primary">
-            🏢 Voir Appartements
-          </button>
-          <button (click)="showLocation(residence)" class="btn btn-secondary">
-            📍 Localisation
-          </button>
-          <button (click)="addToFavorites(residence)" class="btn btn-like">
-            ❤️ Ajouter aux Favoris
-          </button>
-          <button [routerLink]="['/residence-details', residence.id]" class="btn btn-details">
-            ℹ️ Détails
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <h3 *ngIf="favorites.length > 0">Favorites:</h3>
+  <ul>
+    <li *ngFor="let favorite of favorites">{{ favorite.name }}</li>
+  </ul>
 </div>

@@ -1,64 +1,18 @@
-<form [formGroup]="residenceForm" (ngSubmit)="submitForm()" class="form-container">
+<form [formGroup]="residenceForm" (ngSubmit)="addResidence()">
+  <label for="name">Nom</label>
+  <input id="name" formControlName="name" type="text" />
 
-  <!-- Champ caché ID -->
-  <input type="hidden" formControlName="id">
+  <label for="address">Adresse</label>
+  <input id="address" formControlName="address" type="text" />
 
-  <!-- Nom de la résidence -->
-  <label>Nom :</label>
-  <input type="text" formControlName="name">
+  <label for="image">Image</label>
+  <input id="image" formControlName="image" type="text" />
 
-  <!-- Adresse -->
-  <label>Adresse :</label>
-  <input type="text" formControlName="address">
-
-  <!-- Image (URL) -->
-  <label>Image URL :</label>
-  <input type="text" formControlName="image">
-
-  <!-- Statut -->
-  <label>Statut :</label>
-  <select formControlName="status">
-    <option value="Disponible">Disponible</option>
-    <option value="En Construction">En Construction</option>
-    <option value="Vendu">Vendu</option>
+  <label for="status">Statut</label>
+  <select id="status" formControlName="status">
+    <option value="active">Active</option>
+    <option value="inactive">Inactive</option>
   </select>
 
-  <h3>Appartements</h3>
-
-  <div formArrayName="apartments">
-    <div *ngFor="let apt of apartments.controls; let i = index" [formGroupName]="i" class="apartment-card">
-
-      <label>Numéro d'appartement :</label>
-      <input type="text" formControlName="apartmentNumber">
-
-      <label>Étage :</label>
-      <input type="text" formControlName="floorNumber">
-
-      <label>Surface :</label>
-      <input type="text" formControlName="surface">
-
-      <label>Terrasse :</label>
-      <div>
-        <input type="radio" formControlName="terrace" value="no" (change)="onTerraceChange(i, 'yes')"> Non
-        <input type="radio" formControlName="terrace" value="no" (change)="onTerraceChange(i, 'no')"> Non
-      </div>
-
-      <label>Surface Terrasse :</label>
-      <input type="text" formControlName="surfaceTerrace">
-
-      <label>Catégorie :</label>
-      <div>
-        <input type="radio" formControlName="category" value="S+1"> S+1
-        <input type="radio" formControlName="category" value="S+2"> S+2
-        <input type="radio" formControlName="category" value="S+3"> S+3
-      </div>
-
-      <button type="button" (click)="removeApartment(i)" class="btn btn-danger">🗑️ Supprimer</button>
-    </div>
-  </div>
-
-  <button type="button" (click)="addApartment()" class="btn btn-secondary">➕ Ajouter un Appartement</button>
-
-  <br><br>
-  <button type="submit" [disabled]="residenceForm.invalid" class="btn btn-primary">✅ Ajouter la Résidence</button>
+  <button type="submit" [disabled]="!residenceForm.valid">Ajouter Résidence</button>
 </form>

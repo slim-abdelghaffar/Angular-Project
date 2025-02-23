@@ -20,7 +20,6 @@ export class AddApartmentComponent {
       ResidenceId: ['', Validators.required]
     });
 
-    // Activer/désactiver surfaceterrace selon terrace
     this.apartForm.get('terrace')?.valueChanges.subscribe(value => {
       if (value) {
         this.apartForm.get('surfaceterrace')?.enable();
@@ -33,7 +32,9 @@ export class AddApartmentComponent {
 
   addApartment() {
     if (this.apartForm.valid) {
-      console.log('Nouvel Appartement :', this.apartForm.value);
+      console.log('Nouvel Appartement:', this.apartForm.value);
+    } else {
+      console.log('Formulaire invalide');
     }
   }
 }

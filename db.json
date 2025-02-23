@@ -1,0 +1,45 @@
+{
+  "residences": [
+    {
+      "id": 3,
+      "name": "El Arij",
+      "address": "Rades",
+      "image": "../../assets/images/R3.jpg",
+      "status": "Vendu"
+    },
+    {
+      "id": 4,
+      "name": "El Anber",
+      "address": "Inconnu",
+      "image": "../../assets/images/R4.jpg",
+      "status": "En Construction"
+    },
+    {
+      "id": 2,
+      "name": "instancetest",
+      "address": "Borj Cedriaa",
+      "image": "sdq",
+      "status": "active"
+    }
+  ],
+  "apartments": [
+    {
+      "apartNum": 1222,
+      "floorNum": 2,
+      "surface": 22,
+      "terrace": true,
+      "surfaceterrace": 12,
+      "category": "S+1",
+      "residenceId": 3
+    },
+    {
+      "apartNum": 1234,
+      "floorNum": 3,
+      "surface": 30,
+      "terrace": false,
+      "surfaceterrace": null,
+      "category": "S+2",
+      "residenceId": 4
+    }
+  ]
+}
